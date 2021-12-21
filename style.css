@@ -1,0 +1,191 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+body{
+  width: 1600px;
+  height: 900px;
+  background-color: rgba(30,30,30,255);
+	margin: auto;
+}
+
+.pickResult{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 45px;
+	margin-bottom: 15px;
+}
+
+.estimate{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 15px;
+}
+
+.pickOptions{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+
+.team1Res, .team2Res{
+	display: flex;
+	justify-content: space-around;
+	gap: 10px;
+}
+.team1ResComp{
+	width: 100px;
+	height: 100px;
+	background: rgba(0,0,0,255);
+	border: 1px solid rgba(255, 0, 0 , 255);
+}
+
+.team2ResComp{
+	width: 100px;
+	height: 100px;
+	background: rgba(0,0,0,255);
+	border: 1px solid rgba(0, 255, 0, 255);
+}
+
+
+.team1Est{
+	width: 550px;
+	height: 270px;
+	background: rgba(0,0,0,255);
+	border: 1px solid rgba(255, 0, 0 , 255);
+}
+
+.team2Est{
+	width: 550px;
+	height: 270px;
+	background: rgba(0,0,0,255);
+	border: 1px solid rgba(0, 255, 0, 255);
+}
+
+
+.team1Opt, .team2Opt{
+	display: flex;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	gap: 10px;
+	width: 550px;
+	height: 400px;
+	overflow-y: scroll;
+	background: rgba(0,0,0,255);
+}
+.team1Opt{
+	border: 1px solid rgba(255, 0, 0 , 255);
+}
+.team2Opt{
+	border: 1px solid rgba(0, 255, 0, 255);
+}
+
+.team1Opt::-webkit-scrollbar {
+    width: 10px;
+  }
+  .team1Opt::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  .team1Opt::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+	.team2Opt::-webkit-scrollbar {
+	    width: 10px;
+	  }
+	  .team2Opt::-webkit-scrollbar-thumb {
+	    background-color: #2f3542;
+	    border-radius: 10px;
+	    background-clip: padding-box;
+	    border: 2px solid transparent;
+	  }
+	  .team2Opt::-webkit-scrollbar-track {
+	    background-color: grey;
+	    border-radius: 10px;
+	    box-shadow: inset 0px 0px 5px white;
+	  }
+
+.OptLists{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	gap:10px;
+	margin: 5px;
+}
+
+.position1{
+ width: 100%;
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+ align-content: flex-start;
+}
+li img{
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+}
+div img{
+	width: 100%;
+	height: 100%;
+}
+h2{
+	color: white;
+	font-size: 24px;
+	line-height: 30px;
+	width: 100%;
+}
