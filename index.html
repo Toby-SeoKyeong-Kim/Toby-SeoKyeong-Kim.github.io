@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>공학하는음대생 김서경</title>
+  </head>
+  <body>
+    <div class="headerWrap">
+      <header>
+        <h1>공학하는음대생 김서경</h1>
+      </header>
+      <div class="contact">
+        <div class="info">
+          <p>seop0504@gmail.com</p>
+          <p>010-7637-4531</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="left">
+      <div class="projectWrapper">
+        <h2>Project 1: </h2>
+        <span class="projectTitle">VRtist</span>
+        <div class="sourceCode">
+          <span>Github Link:</span>
+          <a href="https://github.com/Toby-SeoKyeong-Kim/ETNZ_VRtist_Project">https://github.com/Toby-SeoKyeong-Kim/ETNZ_VRtist_Project</a>
+        </div>
+        <div class="youtubeWrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/V0DT7FcG0f4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="projectDescription">
+          <div class="description">
+            <p>콘텐츠진흥원에서 콘텐츠임팩트2021 지원자들을 선별하여 팀빌딩 과정을 거친 후 만들어진 Team ETNZ에서 VRtist를 제작하게 됐습니다.<br><br>
+VRtist 는 VR 환경에서 각종 예술 활동을 경험하고 공유할 수 있는 플랫폼입니다.<br>
+6월부터 11월까지 진행된 짧은 지원사업이었기에 저희 팀은 선택과 집중을 해야 했고 멀티플레이와 디제잉 부분에 집중하여 개발을 하게 됐습니다.
+<br><br>
+Unreal Engine(이하 언리얼) 기반으로 제작을 하게 됐고<br>
+대부분의 기능들은 C++에서 작성한 후 언리얼 블루프린트에서 호출하는 방식으로 사용이 됐습니다.
+<br><br>
+팀원들 대부분이 개발 지식이 없는 디자인 관련 전문가들이었기 때문에 개발에 관한 많은 일들을 혼자 수행해야 했습니다.
+<br><br>
+멀티 플레이 방식은 플레이어가 자신의 서버를 호스트 하여 다른 이용자들이 조인 할 수 있도록 하였습니다.
+<br><br>
+그리고 각 클라이언트에서는 자신의 핸드 컨트롤러 위치값을 지속적으로 서버에 전송해<br>
+서버에서 다른 사람들의 핸드 컨트롤러 위치를 갱신시켜 다른 사람의 손이 계속 보이도록 구현했습니다.
+<br><br>
+디제잉 부분을 구현하는데에서 어려움이 많았습니다.<br>
+언리얼에서 기본적으로 제공하는 기능들에서는 저희가 구상한 수준의 디제잉이 불가능 했기 때문에<br>
+실제 상용 프로그램들이 어떤 원리로 돌아가는지 탐구가 필요했습니다.
+<br><br>
+우선 처음 직면한 문제는 게임 폴더 내 패키징 된 데이터가 아닌 사용자의 컴퓨터에 저장 돼있는 wav 파일의 데이터를 파싱해, 게임 내에서 재생해내는 일이었습니다.
+다행히 bit rate 에 상관없이 모든 wav 파일을 파싱해 32bit wav 파일 형태로 바꾸어 언리얼에서 재생할 수 있는 soundwave 형태로 바꾸어주는 플러그인을 발견해 사용했지만, 해당 형태는 파형 시각화와 fft 적용을 하기에 적합하지 않은 타입의 형태였기에, 해당 플러그인의 소스 코드를 정독 후 플러그인 소스 코드에 함수 하나를 추가하여 uint8 어레이로 돼있는 데이터를 float64 어레이로 바꾸어 리턴하게 한 후 언리얼에서 기본적으로 제공하는 IsoundGenerator 클라스를 상속받는 클라스에 float 데이터를 넣어 소리를 낼 수 있었습니다.
+<br><br>
+두 번째 문제는 디제이 컨트롤러에서는 음악의 속도 또한 조절이 가능해야 하는데<br>
+언리얼에서 기본적으로 제공하는 방식으로 처리할 경우 음악의 높낮이와 속도가 같이 영향을 받기 때문에<br>
+이 문제를 해결하기 위해 FFT 를 사용해야 했습니다.
+<br><br>
+음의 높낮이에 경우<br>
+원본 데이터 어레이<br>
+-> FFT프로세스용 어레이<br>
+-> FFT<br>
+-> Phase Vocoder 적용<br>
+-> IFFT<br>
+-> CircularBuffer에 저장, Write 포인터 이동<br>
+-> 스피커가 새로운 데이터가 필요할때 CircularBuffer에서 1024샘플씩 스피커로 보내고 Read 포인터 이동
+<br><br>
+하는 형식으로 설계하여 해결했습니다.
+<br><br>
+그리고 속도의 경우<br>
+Hann Window 를 사용하여 큰 단위로 일정 비율의 샘플들을 스킵하니 음의 높낮이 변화 없이 속도 변화에 성공했습니다.
+<br><br>
+세 번째 문제는 필터 적용의 문제인데 언리얼에서 기본적으로 제공하는 필터의 경우 블루프린트 상에서 Frequency 값을 조정하면 기존 이펙트를 제거하고 새로운 값의 이펙트를 적용하는 방식이라 사운드가 끊기는 '틱틱틱' 거리는 소리가 났습니다. 이 문제를 해결하기 위해 biquad-formulas 를 참고하여 마지막 스피커에 보내기 직전 코드에 적용을 시켰고 Frequency 값을 지정하는 노브의 경우 exponential 해야했기 때문에 bezier formula를 이용하여 값을 자연스럽게 조정하게 만들었습니다.
+<br><br>
+그리고 GCP를 통해 Go 서버와 MongoDB서버 를 만들어 사용자의 커스터마이징 데이터를 사용자의 스팀 아이디에 묶어 저장해두고 불러올 수 있게 개발했습니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="projectWrapper">
+        <h2>Project 2: </h2>
+        <span class="projectTitle">Mylicks</span>
+        <div class="sourceCode">
+          <span>Github Link:</span>
+          <a href="https://github.com/Toby-SeoKyeong-Kim/mylicks">https://github.com/Toby-SeoKyeong-Kim/mylicks</a>
+        </div>
+        <div class="youtubeWrapper">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/LmkQELyF-JU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="projectDescription">
+          <div class="description">
+            <p>마이릭스(MyLicks)는 제가 음악대학 재학 중 떠올린 아이디어를 군대 내 개인정비 시간에 만든 웹사이트입니다.<br>
+재즈를 공부하는 학생들은 영어 단어를 외우듯 특정 코드에서 사용될 수 있는 짧은 단위의 멜로디 라인들을 외워두었다가 즉흥연주에 사용하곤합니다.<br>
+이 짧은 단위의 멜로디들을 릭(Lick) 이라고 하는데, 마이릭스는 이 릭을 공부하는 일을 보조하는 웹사이트입니다.<br>
+새로운 릭을 추가하고 카테고리로 분류하여 찾기 쉽게 만들고, 큰 악보에 하나씩 집어넣어 하나의 솔로 코러스를 만들고 저장할 수 있습니다.<br>
+<br>
+
+군 복무 중에 대부분의 개발을 끝내두고 전역 후 사업자 등록과 결제 시스템 구현까지 마친 후 약 2달동안 서비스를 했습니다.<br>
+하지만 서버비가 부담이 됐고 다른 새로운 프로젝트에 참여할 수 있는 기회를 얻게 되어<br>
+더 이상의 운영 및 업데이트가 어렵다고 판단되어 서비스를 종료하게 됐습니다.<br>
+<br>
+사용된 기술로는 HTML/CSS/JavaScript, Go, MongoDB, Docker, GCP, Google OAuth2.0 등이 있습니다.<br>
+외주를 부탁드린 디자인을 제외하곤 모두 혼자 개발했습니다.<br>
+<br>
+우선 HTML/CSS 로 레이아웃을 잡고<br>
+기술적인 부분은 대부분 P5.js를 이용하여 구현했습니다.<br>
+P5.js 는 JAVA 기반 프레임워크인 Processing 의 Javascript 버전으로서<br>
+canvas 에 그래픽을 렌더링 하는 일에 특화된 라이브러리입니다.<br>
+<br>
+개발에 있어 가장 어려웠던 부분은 악보를 그리기 위해 음표 자료의 구조를 새로 짜는 일이었습니다.<br>
+기존의 MusicXML등 음악 정보를 데이터화한 형식은 많이 있지만 제가 구상한 서비스에는 적합하지 않았기 때문에<br>
+어떤 상황에서든 자연스러운 악보를 그려낼 수 있도록 새로운 형식의 자료 구조를 만들어야 했습니다.<br>
+그래서 악보 클래스안에서 음표 클래스를 선언하여 각 음표가 ？/플랫이 붙어있는지, 어느 박자에 위치해있는지, 절대적은 미디 값은 얼마인지,길이가 어떤지, 어떤 모드의 몇 번 째 음인지 등등 총 11가지의 항목을 데이터베이스에 저장해 xmlHttpRequest 를 통해 서버에서 정보를 받아와 웹 상에서 모든 음표들을 보고 음표의 꼬리를 4개씩 묶을지 2개씩 묶을지 등등을 판단해 최종적으로 canvas 위에 그려주도록 설계했습니다.<br>
+<br>
+악보에선 JqueryUI 를 통해 각 마디마디가 Drag&Drop 을 통해 순서를 자유롭게 바꿀 수 있게 설계했습니다.<br>
+<br>
+서버는 Google Cloud Platform의 가상 머신을 이용했습니다. docker 이미지를 통해 MongoDB 서버를 열어두고<br>
+GCP의 App Engine 을 이용해 Go 서버를 만들어 서로 연결했습니다.<br>
+이렇게 하면 두 개의 가상 머신을 사용한셈인데, 지금 생각해보면 비효율적이지만 당시에는 각종 이미지 파일 업로드와 폴더 관리가 용이해 사용했습니다.<br>
+<br>
+회원 정보는 최대한 가볍게 가져가기 위해 따로 비밀번호 인증절차를 만들지 않고 Google OAuth2.0 에 의존하여 로그인 시스템을 구축했고<br>
+세션 관리는 쿠키와 데이터베이스를 이용하여 설계했습니다.<br>
+로그인 시 사용자 브라우저에 uuid 를 발급하여 쿠키로 저장해두고 동시에 데이터베이스에 최신 uuid 를 저장해 이동 시 쿠키의 uuid 와 최신 uuid 가 일치하지 않을 경우 세션이 만료되도록 구현했습니다.<br>
+</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="right">
+      <div class="profile">
+        <h3>Profile</h3>
+        <p>저는 공학을 사랑하는 음악대학생입니다. 음악을 하며 떠오르는 아이디어들을 장치 및 소프트웨어로 만들어 보며 개발을 접하게 되었고
+          푹 빠져 공부를 계속하다 보니 어느새 개발자로서의 커리어를 꿈꾸게 됐습니다.
+          현재 저는 저의 개발 역량을 키울 수 있고 제가 기여할 수 있는 프로젝트를 찾고 있습니다.</p>
+      </div>
+      <div class="skills">
+        <h3>Skills</h3>
+        <p>HTML/CSS/JS</p>
+        <p>GO</p>
+        <p>C++</p>
+        <p>Unreal Engine</p>
+        <p>MongoDB</p>
+        <p>Docker</p>
+        <p>Kubernetes</p>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+    </script>
+  </body>
+</html>
