@@ -44,12 +44,30 @@ table {
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url(Poppins/Poppins-Reular.ttf), weight:400;
-  src: url(Poppins/Poppins-Thin.ttf), weight:100;
-  src: url(Poppins/Poppins-Light.ttf), weight:300;
-  src: url(Poppins/Poppins-Bold.ttf), weight:700;
+  font-family: "Poppins";
+  src: url(Poppins/Poppins-Reular.ttf) format("truetype");
+  font-weight: regular;
+  font-style: normal;
 }
+@font-face {
+  font-family: "Poppins";
+  src: url(Poppins/Poppins-Thin.ttf) format("truetype");
+  font-weight: thin;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url(Poppins/Poppins-Light.ttf) format("truetype");
+  font-weight: light;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url(Poppins/Poppins-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 *
 {
@@ -57,6 +75,7 @@ table {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
+  font-weight: regular;
 }
 
 body{
@@ -89,7 +108,7 @@ header h1:hover{
 header a{
   color: #aaa;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: bold;
   font-size: 22px;
   transition-duration: .5s;
 }
@@ -197,7 +216,7 @@ header a:hover{
 .cardContent p{
   font-size: 1em;
   color: #fff;
-  font-weight: 300;
+  font-weight: light;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
