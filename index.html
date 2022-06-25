@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div id="p5Canvas">
+
+    </div>
+    <header>
+      <div class="name">
+        <h1>SeoKyeong Toby Kim</h1>
+      </div>
+      <div class="about">
+        <a href="#">About</a>
+      </div>
+    </header>
+    <div class="aboutme">
+      <h1>Hi, I'm Toby</h1>
+      <div class="desc">
+        <p>I'm an audio specialized video game developer <br> with Unreal Engine and C++</p>
+      </div>
+    </div>
+    <div class="cardContainer">
+      <div class="card" id="pro">
+        <div class="cardContent">
+          <h3>Programmer</h3>
+          <div class="cardHover">
+            <h2>01</h2>
+            <p>Unreal Engine / C++ <br> Full-Stack web Dev<br>Go / Docker / MongoDB</p>
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="mus">
+        <div class="cardContent">
+          <h3>Musician</h3>
+          <div class="cardHover">
+            <h2>02</h2>
+            <p>Real-time Audio Processing <br> Music for Videos</p>
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+      <div class="card" id="inv">
+        <div class="cardContent">
+          <h3>Inventor</h3>
+          <div class="cardHover">
+            <h2>03</h2>
+            <p>Arduino <br> Jazz Solo Machine</p>
+            <a href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="vanila.js"></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelectorAll(".card"), {
+        max: 12,
+        speed: 400,
+        glare: true,
+        "max-glare": .5,
+      });
+    </script>
+    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="wave.js"></script>
+    <script type="text/javascript" src="ball.js"></script>
+  </body>
+</html>
