@@ -15,8 +15,6 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font-size: 100%;
-	font: inherit;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -46,25 +44,25 @@ table {
 @font-face {
   font-family: "Poppins";
   src: url(Poppins/Poppins-Reular.ttf) format("truetype");
-  font-weight: regular;
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
   src: url(Poppins/Poppins-Thin.ttf) format("truetype");
-  font-weight: thin;
+  font-weight: 100;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
   src: url(Poppins/Poppins-Light.ttf) format("truetype");
-  font-weight: light;
+  font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
   src: url(Poppins/Poppins-Bold.ttf) format("truetype");
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -75,7 +73,7 @@ table {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
-  font-weight: regular;
+  font-weight: 400;
 }
 
 body{
@@ -108,7 +106,7 @@ header h1:hover{
 header a{
   color: #aaa;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 22px;
   transition-duration: .5s;
 }
@@ -216,7 +214,7 @@ header a:hover{
 .cardContent p{
   font-size: 1em;
   color: #fff;
-  font-weight: light;
+  font-weight: 300;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
