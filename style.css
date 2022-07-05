@@ -112,6 +112,11 @@ header a{
   transition-duration: .5s;
 	font-weight: 700;
 }
+.about{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
 header a:hover{
   color: #fff;
 
@@ -123,6 +128,23 @@ header a:hover{
   top: 0;
   left: 0;
   z-index: 0;
+	overflow: hidden;
+}
+#light1{
+	width: 70px;
+	height: 70px;
+	position: absolute;
+	transition-duration: .2s;
+	border-radius: 100%;
+
+}
+#light2{
+	width: 70px;
+	height: 70px;
+	position: absolute;
+	transition-duration: .2s;
+	border-radius: 100%;
+
 }
 
 .aboutme{

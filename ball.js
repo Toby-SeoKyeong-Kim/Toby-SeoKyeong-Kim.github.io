@@ -11,6 +11,7 @@ class Ball {
     this.lon = random(6.28);
     this.color = c;
     this.inPosition = false;
+    this.e =false;
   }
 
   attract(ball){
@@ -94,6 +95,9 @@ class Ball {
 
   show(){
     push();
+    if (this.e) {
+      shininess(1);
+    }
     specularMaterial(this.color);
     translate(this.pos.x, this.pos.y, this.pos.z);
     sphere(50);

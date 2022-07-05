@@ -18,6 +18,8 @@ let sequencing = false;
 let sequenceDur = 0;
 let movingSequenceDur = 0;
 let mv;
+var light1 = $("#light1");
+var light2 = $("#light2");
 
 function setup() {
   var canv = createCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight), WEBGL);
@@ -92,8 +94,8 @@ function draw(){
   // line(vs[1].x,vs[1].y,vs[1].z, vs[4].x,vs[4].y,vs[4].z); // 6 - 7
   // line(vs[3].x,vs[3].y,vs[3].z, vs[4].x,vs[4].y,vs[4].z); // 8 - 9
   // line(vs[5].x,vs[5].y,vs[5].z, vs[4].x,vs[4].y,vs[4].z); // 10 - 15
-  orbitControl(1,1,.1);
-  shininess(100);
+  //orbitControl(1,1,.1);
+  shininess(20);
   noStroke();
 
   if(stage == 1){
@@ -132,6 +134,7 @@ function draw(){
           if(alllInPos()) {
             sequencing = true;
             moving = false;
+            lightSwitch(true);
           }
         }else{
           if(moving){
@@ -143,6 +146,7 @@ function draw(){
               }
               if(movingSequenceDur > 40){
                 moving = false;
+                lightSwitch(true);
                 movingSequenceDur = 0;
               }else{
                 movingSequenceDur++;
@@ -157,6 +161,7 @@ function draw(){
               }else{
                 sequenceDur = 0;
                 moving = true;
+                lightSwitch(false);
                 if(toggle){
                   toggle = false;
                 }else{
@@ -174,7 +179,7 @@ function draw(){
         let vl = p5.Vector.lerp(vs[4], vs[5], (i-9) / 7);
         balls[i].seek2(vl);
       }
-    }
+    }//stage 3
     balls[i].update();
   }
 
@@ -204,6 +209,7 @@ function stageO(){
    sequencing = false;
    sequenceDur = 0;
    movingSequenceDur = 0;
+   lightSwitch(false);
    mv = vs[1].copy();
    for (ball of balls) {
      ball.inPosition = false;
@@ -212,6 +218,8 @@ function stageO(){
 
 function windowResized() {
   resizeCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight));
+  width =max(windowWidth, p5Canvas.clientWidth);
+  height = max(windowHeight, p5Canvas.clientHeight);
 }
 
 function alllInPos(){
@@ -219,6 +227,27 @@ function alllInPos(){
     if(!ball.inPosition) return false;
   }
   return true;
+}
+
+function lightSwitch(on){
+  if(on){
+    if(toggle){
+      light1.css("box-shadow", "0 0 150px " + "rgba(" + balls[0].color.levels[0]+ ","+ balls[0].color.levels[1] + ","+ balls[0].color.levels[2]+ "," + "1"+")");
+      light1.css("top", (height/2 + balls[0].pos.y-30) + "px");
+      light1.css("left", (width/2 + balls[0].pos.x+10) + "px");
+      balls[0].e = true;
+    }else{
+      light2.css("box-shadow", "0 0 150px " + "rgba(" + balls[3].color.levels[0]+ ","+ balls[3].color.levels[1] + ","+ balls[3].color.levels[2]+ "," + "1"+")");
+      light2.css("top", (height/2 + balls[3].pos.y-40) + "px");
+      light2.css("left", (width/2 + balls[3].pos.x+10) + "px");
+      balls[3].e = true;
+    }
+  }else{ //if off
+    light1.css("box-shadow", "none");
+    light2.css("box-shadow", "none");
+    balls[3].e = false;
+    balls[0].e = false;
+  }
 }
 // function mouseReleased(){
 //   balls.push(new Ball());
