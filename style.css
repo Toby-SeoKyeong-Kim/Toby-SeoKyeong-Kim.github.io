@@ -65,6 +65,12 @@ table {
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "Poppins";
+  src: url(Poppins/Poppins-Medium.ttf) format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
 
 
 *
@@ -80,7 +86,7 @@ body{
   display: flex;
   position: relative;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
   min-height: 100vh;
   width: max(1300px, 100%);
@@ -89,7 +95,7 @@ body{
 }
 
 header{
-  position:  absolute;
+  position:  relative;
   top: 30px;
   width: 1300px;
   display: flex;
@@ -97,10 +103,10 @@ header{
   font-weight: 700;
 }
 header h1{
-  font-size: 22px;
+  font-size: 20px;
   color: #aaa;
   transition-duration: .5s;
-	font-weight: 700;
+	font-weight: 500;
 }
 header h1:hover{
   color:#fff;
@@ -108,14 +114,15 @@ header h1:hover{
 header a{
   color: #aaa;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 18px;
   transition-duration: .5s;
-	font-weight: 700;
+	font-weight: 500;
 }
 .about{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
+	width: 450px;
 }
 header a:hover{
   color: #fff;
@@ -153,7 +160,7 @@ header a:hover{
   z-index: 1;
   color: #fff;
   margin-top: 30px;
-  font-size: 32px;
+  font-size: 38px;
   text-align:  center;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
@@ -194,7 +201,7 @@ header a:hover{
   align-items: center;
   border-top: 1px solid rgba(255, 255, 255, .5);
   border-left: 1px solid rgba(255, 255, 255, .5);
-  backdrop-filter: blur(7px);
+  backdrop-filter: blur(12px);
 }
 
 .cardContent{

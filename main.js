@@ -220,6 +220,25 @@ function windowResized() {
   resizeCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight));
   width =max(windowWidth, p5Canvas.clientWidth);
   height = max(windowHeight, p5Canvas.clientHeight);
+  vs[0] = createVector(-width*7/16, 0, -50);
+  vs[1] = createVector(-width*4/16, -height*1/16, -50);
+  vs[2] = createVector(-width*7/16, height*4/16, -50);
+  vs[3] = createVector(-width*4/16, height*3/16, -50);
+  let s = vs[1].copy();
+  let df = vs[2].copy();
+  df.sub(vs[0]);
+  s.sub(vs[0]);
+  s.normalize();
+  s.mult(width*14/32);
+  let ss = s.copy();
+  ss.mult(2.2);
+  var dff = df.div(2)
+  s.add(dff);
+  s.add(vs[0]);
+  vs[4] = s;
+  ss.add(dff);
+  ss.add(vs[0]);
+  vs[5] = ss;
 }
 
 function alllInPos(){
