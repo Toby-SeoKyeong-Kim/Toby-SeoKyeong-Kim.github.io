@@ -5,7 +5,7 @@ let pink;
 let hotpink;
 let orange;
 let blue ;
-let stage = 0;
+let stage = 1;
 let pro, mus, inv;
 let sun;
 let ws = [];
@@ -24,15 +24,7 @@ var light2 = $("#light2");
 function setup() {
   var canv = createCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight), WEBGL);
   canv.parent('#p5Canvas');
-  pro = select("#pro");
-  mus = select("#mus");
-  inv = select("#inv");
-  pro.mouseOver(stageOne);
-  pro.mouseOut(stageO);
-  mus.mouseOver(stageTwo);
-  mus.mouseOut(stageO);
-  inv.mouseOver(stageThree);
-  inv.mouseOut(stageO);
+
 
 
    pink = color(245, 176, 194);
@@ -44,13 +36,11 @@ function setup() {
    cs.push(hotpink);
    cs.push(orange);
 
-   for(var i = 0; i < 16; i++){
-     let pos = createVector(random(-width/2, width/2),random(-height/2, height/2),random(-100));
+   for(var i = 0; i < 8; i++){
+     let pos = createVector(random(-width * 2 /3 , width * 2 /3 ),random(-height * 2 /3 , height * 2 /3 ),random(-100));
      let vel = createVector(random(-2, 2), random(-2, 2), -1);
-     var col = cs[Math.floor(random(4))];
-     if(i == 0 || i == 3){
-       col = cs[1];
-     }
+     var col = cs[i%4];
+     
      balls.push(new Ball(pos,vel,random(10,15),col));
    }
    for(var i = 0; i < 1; i++){
@@ -224,54 +214,5 @@ function windowResized() {
   resizeCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight));
   width =max(windowWidth, p5Canvas.clientWidth);
   height = max(windowHeight, p5Canvas.clientHeight);
-  vs[0] = createVector(-width*7/16, 0, -50);
-  vs[1] = createVector(-width*4/16, -height*1/16, -50);
-  vs[2] = createVector(-width*7/16, height*4/16, -50);
-  vs[3] = createVector(-width*4/16, height*3/16, -50);
-  let s = vs[1].copy();
-  let df = vs[2].copy();
-  df.sub(vs[0]);
-  s.sub(vs[0]);
-  s.normalize();
-  s.mult(width*14/32);
-  let ss = s.copy();
-  ss.mult(2.2);
-  var dff = df.div(2)
-  s.add(dff);
-  s.add(vs[0]);
-  vs[4] = s;
-  ss.add(dff);
-  ss.add(vs[0]);
-  vs[5] = ss;
-}
 
-function alllInPos(){
-  for (ball of balls) {
-    if(!ball.inPosition) return false;
-  }
-  return true;
 }
-
-function lightSwitch(on){
-  if(on){
-    if(toggle){
-      light1.css("box-shadow", "0 0 150px " + "rgba(" + balls[0].color.levels[0]+ ","+ balls[0].color.levels[1] + ","+ balls[0].color.levels[2]+ "," + "1"+"),0 0 500px " + "rgba(" + balls[0].color.levels[0]+ ","+ balls[0].color.levels[1] + ","+ balls[0].color.levels[2]+ "," + "1"+")");
-      light1.css("top", (height/2 + balls[0].pos.y-30) + "px");
-      light1.css("left", (width/2 + balls[0].pos.x+10) + "px");
-      balls[0].e = true;
-    }else{
-      light2.css("box-shadow", "0 0 150px " + "rgba(" + balls[3].color.levels[0]+ ","+ balls[3].color.levels[1] + ","+ balls[3].color.levels[2]+ "," + "1"+"), 0 0 500px " + "rgba(" + balls[3].color.levels[0]+ ","+ balls[3].color.levels[1] + ","+ balls[3].color.levels[2]+ "," + "1"+")");
-      light2.css("top", (height/2 + balls[3].pos.y-40) + "px");
-      light2.css("left", (width/2 + balls[3].pos.x+10) + "px");
-      balls[3].e = true;
-    }
-  }else{ //if off
-    light1.css("box-shadow", "none");
-    light2.css("box-shadow", "none");
-    balls[3].e = false;
-    balls[0].e = false;
-  }
-}
-// function mouseReleased(){
-//   balls.push(new Ball());
-// }

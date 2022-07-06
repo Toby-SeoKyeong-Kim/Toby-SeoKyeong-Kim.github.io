@@ -5,7 +5,7 @@ let pink;
 let hotpink;
 let orange;
 let blue ;
-let stage = 0;
+let stage = 3;
 let pro, mus, inv;
 let sun;
 let ws = [];
@@ -24,16 +24,6 @@ var light2 = $("#light2");
 function setup() {
   var canv = createCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight), WEBGL);
   canv.parent('#p5Canvas');
-  pro = select("#pro");
-  mus = select("#mus");
-  inv = select("#inv");
-  pro.mouseOver(stageOne);
-  pro.mouseOut(stageO);
-  mus.mouseOver(stageTwo);
-  mus.mouseOut(stageO);
-  inv.mouseOver(stageThree);
-  inv.mouseOut(stageO);
-
 
    pink = color(245, 176, 194);
    hotpink= color(252, 21, 117);

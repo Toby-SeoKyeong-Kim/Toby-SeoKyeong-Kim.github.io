@@ -1,0 +1,146 @@
+body{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  width: max(1300px, 100%);
+  background: #000;
+  margin: auto;
+}
+.wrapper{
+  width: 1300px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+  backdrop-filter: blur(12px);
+}
+header{
+  position:  relative;
+  width: 1300px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  padding-top: 30px;
+  padding-bottom: 30px;
+
+}
+header h1{
+  font-size: 20px;
+  color: #aaa;
+  transition-duration: .5s;
+	font-weight: 500;
+}
+header h1:hover{
+  color:#fff;
+}
+header a{
+  color: #aaa;
+  text-decoration: none;
+  font-size: 18px;
+  transition-duration: .5s;
+	font-weight: 500;
+}
+.about{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 450px;
+}
+header a:hover{
+  color: #fff;
+}
+.name a{
+  font-size: 20px;
+}
+#p5Canvas{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+	overflow: hidden;
+}
+.contents{
+  width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.vrtist {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.mylicks {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.desc {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.desc h2{
+  font-size: 52px;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.desc p{
+  color: #aaa;
+  font-size: 22px;
+  text-align: center;
+}
+.vid {
+  width: 100%;
+}
+ iframe{
+  width: 100%;
+  height: 562.5px;
+}
+.role{
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.role h2{
+  font-size: 40px;
+  color: #fff;
+  width: 50%;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+.role ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+.role li {
+  width: 100%;
+  color: #aaa;
+  margin-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
