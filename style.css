@@ -46,6 +46,7 @@ header a:hover{
 }
 .name a{
   font-size: 20px;
+  margin-left: 15px;
 }
 #p5Canvas{
   width: 100%;
