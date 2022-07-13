@@ -10,11 +10,13 @@ body{
 }
 .wrapper{
   width: 100%;
+  z-index: 1;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: flex-start;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 header{
