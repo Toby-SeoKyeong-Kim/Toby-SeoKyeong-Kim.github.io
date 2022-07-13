@@ -4,25 +4,26 @@ body{
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  min-height: 100vh;
-  width: max(1300px, 100%);
+  width: min(1300px, 100%);
   background: #000;
   margin: auto;
 }
 .wrapper{
-  width: 1300px;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: flex-start;
   backdrop-filter: blur(12px);
 }
+
 header{
   position:  relative;
   padding:  30px 0;
-  width: 1300px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: 700;
 }
 header h1{
@@ -41,12 +42,33 @@ header a{
   transition-duration: .5s;
 	font-weight: 500;
 }
+#short{
+  display: none;
+  font-size: 35px;
+}
+#hidden{
+  display: flex;
+}
 .about{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	width: 450px;
-
+}
+.aboutimg{
+  display: none;
+  justify-content: space-around;
+	align-items: center;
+	width: 50%;
+}
+.aboutimg img{
+  width: 30px;
+  height: 30px;
+  transition-duration: .3s;
+  filter: brightness(.6);
+}
+.aboutimg img:hover{
+  filter: brightness(1);
 }
 header a:hover{
   color: #fff;
@@ -68,7 +90,8 @@ header a:hover{
 
 
 .aboutme{
-  width: 1300px;
+  width: 100%;
+  max-width: 1300px;
   position: relative;
   z-index: 1;
   color: #fff;
@@ -93,6 +116,7 @@ header a:hover{
   display: flex;
   align-items: center;
   justify-content: center;
+  transition-duration: .2s;
 }
 .desc{
   font-size: 30px;
@@ -102,9 +126,13 @@ header a:hover{
   justify-content: center;
   flex-wrap: wrap;
 }
+.desc li{
+  transition-duration: .2s;
+}
 .desc p {
   width: 100%;
   text-align: center;
+  transition-duration: .2s;
 }
 .desc span{
   width: 50%;
@@ -114,6 +142,7 @@ header a:hover{
   display: flex;
   justify-content: center;
   align-items: center;
+  transition-duration: .2s;
 }
 .who {
   width: 50%;
@@ -159,11 +188,12 @@ footer{
   border-top: 2px solid #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .contact {
-  width: 50%;
-  height: 300px;
+  width: 45%;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,7 +221,7 @@ footer{
 }
 
 .nav{
-  width: 50%;
+  width: 45%;
   height: 250px;
   display: flex;
   justify-content: flex-end;
@@ -221,4 +251,76 @@ footer{
 }
 #sel {
   color: #fff;
+}
+
+@media only screen and (max-width: 1300px) {
+  body {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .vid {
+    width: 90%;
+    margin: auto;
+  }
+  .role h2{
+    font-size: 30px;
+  }
+  .role li{
+    font-size: 18px;
+  }
+
+  .desc h2{
+    font-size: 40px;
+  }
+  .desc p{
+    font-size: 18px;
+  }
+  .aboutme h1{
+    font-size: 50px;
+  }
+  .desc span{
+    font-size: 30px;
+  }
+  .desc li{
+    font-size: 20px;
+  }
+}
+
+
+@media only screen and (max-width: 780px) {
+  .about {
+    display: none;
+  }
+  .aboutimg{
+    display: flex;
+  }
+
+  .contact{
+    align-content: flex-start;
+  }
+  .outro{
+    font-size: 20px;
+  }
+  .email{
+    font-size: 20px;
+  }
+  .nav a {
+    font-size: 20px;
+  }
+  footer{
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #long{
+    display: none;
+  }
+  #short{
+    display: flex;
+  }
+  .aboutimg{
+    width: 60%;
+  }
 }

@@ -4,18 +4,18 @@ body{
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  min-height: 100vh;
-  width: max(1300px, 100%);
+  width: min(1300px, 100%);
   background: #000;
   margin: auto;
 }
 
 header{
   position:  relative;
-  top: 30px;
-  width: 1300px;
+  padding:  30px 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-weight: 700;
 }
 header h1{
@@ -34,11 +34,33 @@ header a{
   transition-duration: .5s;
 	font-weight: 500;
 }
+#short{
+  display: none;
+  font-size: 35px;
+}
+#hidden{
+  display: flex;
+}
 .about{
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	width: 450px;
+}
+.aboutimg{
+  display: none;
+  justify-content: space-around;
+	align-items: center;
+	width: 50%;
+}
+.aboutimg img{
+  width: 30px;
+  height: 30px;
+  transition-duration: .3s;
+  filter: brightness(.6);
+}
+.aboutimg img:hover{
+  filter: brightness(1);
 }
 header a:hover{
   color: #fff;
@@ -51,33 +73,22 @@ header a:hover{
 #p5Canvas{
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 0;
 	overflow: hidden;
 }
-#light1{
-	width: 70px;
-	height: 70px;
-	position: absolute;
-	transition-duration: .2s;
-	border-radius: 100%;
 
-}
-#light2{
-	width: 70px;
-	height: 70px;
-	position: absolute;
-	transition-duration: .2s;
-	border-radius: 100%;
-
-}
 
 .aboutme{
-  width: 1300px;
+  width: 100%;
+  height: 300px;
   position: relative;
   z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   margin-top: 30px;
   font-size: 38px;
@@ -104,7 +115,7 @@ header a:hover{
   flex-wrap: wrap;
   z-index: 1;
   margin: auto;
-
+  margin-bottom: 50px;
 }
 
 .cardContainer .card {
@@ -188,4 +199,129 @@ header a:hover{
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
+}
+
+footer{
+  width: 100%;
+  height: 500px;
+  z-index: 1;
+  border-top: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact {
+  width: 45%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  color: #fff
+}
+.outro{
+  width: 100%;
+  text-align:  left;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  font-size: 30px;
+}
+.outro p {
+  width: 500px;
+  font-weight: 300;
+}
+.email{
+  width: 100%;
+  text-align:  center;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.nav{
+  width: 45%;
+  height: 250px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.nav ul{
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+.nav li{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav a {
+  font-size: 30px;
+  font-weight: 700;
+  color: #aaa;
+  text-decoration: none;
+  transition-duration: .3s;
+}
+.nav a:hover{
+  color: #fff;
+}
+
+
+@media only screen and (max-width: 1300px) {
+  body {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1040px) {
+  .cardContainer {
+    flex-direction: column;
+  }
+}
+
+
+
+
+@media only screen and (max-width: 780px) {
+  .about {
+    display: none;
+  }
+  .aboutimg{
+    display: flex;
+  }
+  .aboutme h1{
+    font-size: 60px;
+  }
+  .contact{
+
+    align-content: flex-start;
+  }
+  .outro{
+    font-size: 20px;
+  }
+  .email{
+    font-size: 20px;
+  }
+  .nav a {
+    font-size: 20px;
+  }
+  footer{
+    height: 300px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  #long{
+    display: none;
+  }
+  #short{
+    display: flex;
+  }
+  .aboutimg{
+    width: 60%;
+  }
 }

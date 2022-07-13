@@ -6,7 +6,6 @@ let hotpink;
 let orange;
 let blue ;
 let stage = 1;
-let pro, mus, inv;
 let sun;
 let ws = [];
 let cs =[];
@@ -18,13 +17,14 @@ let sequencing = false;
 let sequenceDur = 0;
 let movingSequenceDur = 0;
 let mv;
-var light1 = $("#light1");
-var light2 = $("#light2");
+var hheight;
 
 function setup() {
   var canv = createCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight), WEBGL);
+  width =max(windowWidth, p5Canvas.clientWidth);
+  height = max(windowHeight, p5Canvas.clientHeight);
+  hheight = width * .5625;
   canv.parent('#p5Canvas');
-
 
 
    pink = color(245, 176, 194);
@@ -36,23 +36,25 @@ function setup() {
    cs.push(hotpink);
    cs.push(orange);
 
-   for(var i = 0; i < 8; i++){
-     let pos = createVector(random(-width * 2 /3 , width * 2 /3 ),random(-height * 2 /3 , height * 2 /3 ),random(-100));
+   for(var i = 0; i < 16; i++){
+     let pos = createVector(random(-width/2, width/2),random(-hheight/2, hheight/2),random(-100));
      let vel = createVector(random(-2, 2), random(-2, 2), -1);
-     var col = cs[i%4];
-     
+     var col = cs[Math.floor(random(4))];
+     if(i == 0 || i == 3){
+       col = cs[1];
+     }
      balls.push(new Ball(pos,vel,random(10,15),col));
    }
    for(var i = 0; i < 1; i++){
-     ws.push(new Wavee(height/8, 12, random(TWO_PI)));
+     ws.push(new Wavee(hheight/2, 12, random(TWO_PI)));
    }
-   sun = new Ball(createVector(-width/2,height/2,-150),createVector(0,0,0), 700);
-   sun2 = new Ball(createVector(width/2,-height/4,-50),createVector(0,0,0), 600);
+   sun = new Ball(createVector(0,0,-150),createVector(0,0,0), 700);
+   sun2 = new Ball(createVector(width/2,-hheight/4,-50),createVector(0,0,0), 600);
 
    vs.push(createVector(-width*7/16, 0, -50));
-   vs.push(createVector(-width*4/16, -height*1/16, -50));
-   vs.push(createVector(-width*7/16, height*4/16, -50));
-   vs.push(createVector(-width*4/16, height*3/16, -50));
+   vs.push(createVector(-width*4/16, -hheight*1/16, -50));
+   vs.push(createVector(-width*7/16, hheight*4/16, -50));
+   vs.push(createVector(-width*4/16, hheight*3/16, -50));
    let s = vs[1].copy();
    let df = vs[2].copy();
    df.sub(vs[0]);
@@ -196,7 +198,7 @@ function stageThree(){
 }
 function stageO(){
   stage = 0;
-  sun2.pos.set(width/2,-height/4,-50);
+  sun2.pos.set(width/2,-hheight/4,-50);
 
   toggle = true;
    moving = false;
@@ -214,5 +216,57 @@ function windowResized() {
   resizeCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight));
   width =max(windowWidth, p5Canvas.clientWidth);
   height = max(windowHeight, p5Canvas.clientHeight);
-
+  hheight = width * .5625;
+  vs[0] = createVector(-width*7/16, 0, -50);
+  vs[1] = createVector(-width*4/16, -hheight*1/16, -50);
+  vs[2] = createVector(-width*7/16, hheight*4/16, -50);
+  vs[3] = createVector(-width*4/16, hheight*3/16, -50);
+  let s = vs[1].copy();
+  let df = vs[2].copy();
+  df.sub(vs[0]);
+  s.sub(vs[0]);
+  s.normalize();
+  s.mult(width*14/32);
+  let ss = s.copy();
+  ss.mult(2.2);
+  var dff = df.div(2)
+  s.add(dff);
+  s.add(vs[0]);
+  vs[4] = s;
+  ss.add(dff);
+  ss.add(vs[0]);
+  vs[5] = ss;
+  for(var i = 0; i < 1; i++){
+    ws[i].amplitude = hheight/2;
+  }
+  if(!toggle){
+    mv = p5.Vector.lerp(vs[1], vs[3], (movingSequenceDur / 40));
+  }else{
+    mv = p5.Vector.lerp(vs[3], vs[1], (movingSequenceDur / 40));
+  }
 }
+
+function alllInPos(){
+  for (ball of balls) {
+    if(!ball.inPosition) return false;
+  }
+  return true;
+}
+
+function lightSwitch(on){
+  var size = min(50, width*5/192);
+  var lightsize = size * .7;
+  if(on){
+    if(toggle){
+      balls[0].e = true;
+    }else{
+      balls[3].e = true;
+    }
+  }else{ //if off
+    balls[3].e = false;
+    balls[0].e = false;
+  }
+}
+// function mouseReleased(){
+//   balls.push(new Ball());
+// }

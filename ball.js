@@ -63,7 +63,16 @@ class Ball {
 
     force.setMag(desiredSpeed);
     force.sub(this.vel);
-    force.limit(.3);
+    force.limit(.8);
+    this.applyForce(force);
+  }
+  seek1(target) {
+    let force = p5.Vector.sub(target, this.pos);
+    let desiredSpeed = 7;
+
+    force.setMag(desiredSpeed);
+    force.sub(this.vel);
+    force.limit(.5);
     this.applyForce(force);
   }
   seek2(target) {
@@ -100,7 +109,8 @@ class Ball {
     }
     specularMaterial(this.color);
     translate(this.pos.x, this.pos.y, this.pos.z);
-    sphere(50);
+    var size = min(50, width*5/192);
+    sphere(size);
     pop();
   }
 }
