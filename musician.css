@@ -72,6 +72,9 @@ header a{
 .aboutimg img:hover{
   filter: brightness(1);
 }
+#selim{
+  filter: brightness(1);
+}
 header a:hover{
   color: #fff;
 
