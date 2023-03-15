@@ -1,5 +1,7 @@
 
 var p5Canvas = document.getElementById('p5Canvas');
+var computedStyle = window.getComputedStyle(p5Canvas);
+var isHardwareAccelerated = computedStyle.getPropertyValue('transform') !== 'none';
 let balls = [];
 let pink;
 let hotpink;
@@ -85,6 +87,7 @@ function setup() {
 
 function draw(){
   background(5);
+  if(!isHardwareAccelerated) return;
   ambientLight(130);
   directionalLight(blue, -width/2, -height/2, -100);
   directionalLight(pink, width/2, -height/2, -100);
