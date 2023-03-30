@@ -1,7 +1,5 @@
 
 var p5Canvas = document.getElementById('p5Canvas');
-var computedStyle = window.getComputedStyle(p5Canvas);
-var isHardwareAccelerated = computedStyle.getPropertyValue('transform') !== 'none';
 let balls = [];
 let pink;
 let hotpink;
@@ -22,7 +20,7 @@ let mv;
 var hheight;
 
 function setup() {
-  if(!isHardwareAccelerated) return;
+
   var canv = createCanvas(max(windowWidth, p5Canvas.clientWidth), max(windowHeight, p5Canvas.clientHeight), WEBGL);
   width =max(windowWidth, p5Canvas.clientWidth);
   height = max(windowHeight, p5Canvas.clientHeight);
@@ -78,7 +76,6 @@ function setup() {
 
 function draw(){
   background(5);
-  if(!isHardwareAccelerated) remove();
   ambientLight(130);
   directionalLight(blue, -width/2, -height/2, -100);
   directionalLight(pink, width/2, -height/2, -100);
